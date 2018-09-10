@@ -7,12 +7,10 @@ import { fromJS } from 'immutable'
 import * as actionTypes from './actionTypes'
 
 import data from '../utils/data'
-
 const defaultState = fromJS({
 	open: false,
 	data: data
 });
-
 const reducer = (state = defaultState, action) => {
 	switch (action.type){
 		case actionTypes.OPEN_MODAL:

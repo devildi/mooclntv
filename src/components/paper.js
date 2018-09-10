@@ -27,54 +27,30 @@ const PaperSheet = (props) => {
   return (
     <div>
       {
-        data.map((item, index) => {
-          console.log(console.log(`11111${index}`))
-          return (
+        data.map((item, index) => (
             <Paper className={classes.root} elevation={1} key={index}>
               <Typography variant="title" component="h3" align="left">
-                第1章：初识DaVinci
+                {item.name1}
               </Typography>
-              <List component="nav">
-                <ListItem button>
-                  <ListItemIcon>
-                    <PlayIcon />
-                  </ListItemIcon>
-                  <ListItemText 
-                    primary="Trash" 
-                    onClick={props.popup}
-                  />
-                </ListItem>
-              </List>
+              {
+                item.content.map((r, i) => (
+                  <List component="nav" key={i}>
+                    <ListItem button onClick={props.popup}>
+                      <ListItemIcon>
+                        <PlayIcon />
+                      </ListItemIcon>
+                      <ListItemText 
+                        primary="Trash" 
+                      />
+                    </ListItem>
+                  </List>
+                ))
+              }
             </Paper>
             )
-          }
+          
         )
       }
-      <Paper className={classes.root} elevation={1}>
-        <Typography variant="title" component="h3" align="left">
-          第1章：初识DaVinci
-        </Typography>
-        <List component="nav">
-          <ListItem button>
-            <ListItemIcon>
-              <PlayIcon />
-            </ListItemIcon>
-            <ListItemText 
-              primary="Trash" 
-              onClick={props.popup}
-            />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <PlayIcon />
-            </ListItemIcon>
-            <ListItemText 
-              primary="Trash" 
-              onClick={props.popup}
-            />
-          </ListItem>
-        </List>
-      </Paper>
     </div>
   )
 }
@@ -85,7 +61,7 @@ PaperSheet.propTypes = {
 
 const mapState = (state) => {
   return {
-    data: state.get('data')
+    data: state.get('data').toJS()
   } 
 }
 
@@ -97,4 +73,4 @@ const mapDispatch = (dispatch) => {
   }
 }
 
-export default connect(mapState, mapDispatch)(withStyles(styles)(PaperSheet));
+export default connect(mapState, mapDispatch)(withStyles(styles)(PaperSheet))
