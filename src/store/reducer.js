@@ -1,8 +1,4 @@
-// import { combineReducers } from 'redux-immutable';
-
-// const reducer = combineReducers({
-
-// });
+import { combineReducers } from 'redux-immutable';
 import { fromJS } from 'immutable'
 import * as actionTypes from './actionTypes'
 
@@ -22,4 +18,6 @@ const reducer = (state = defaultState, action) => {
 	}
 }
 
-export default reducer;
+export default combineReducers({
+	main: reducer
+});

@@ -61,7 +61,7 @@ PaperSheet.propTypes = {
 
 const mapState = (state) => {
   return {
-    data: state.get('data').toJS()
+    data: state.getIn(['main','data']).toJS()
   } 
 }
 

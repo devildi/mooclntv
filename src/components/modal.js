@@ -46,7 +46,7 @@ const SimpleModalWrapped = withStyles(styles)(SimpleModal)
 
 const mapState = (state) => {
   return {
-    open: state.get('open')
+    open: state.getIn(['main','open'])
   }
 }
 
