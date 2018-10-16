@@ -23,7 +23,7 @@ const styles = theme => ({
 })
 
 const PaperSheet = (props) => {
-  const { classes, data } = props;
+  const { classes, data, popup } = props;
   return (
     <div>
       {
@@ -35,12 +35,12 @@ const PaperSheet = (props) => {
               {
                 item.content.map((r, i) => (
                   <List component="nav" key={i}>
-                    <ListItem button onClick={props.popup}>
+                    <ListItem button onClick={() => popup(r.addredd)}>
                       <ListItemIcon>
                         <PlayIcon />
                       </ListItemIcon>
                       <ListItemText 
-                        primary="Trash" 
+                        primary={r.name} 
                       />
                     </ListItem>
                   </List>
@@ -61,14 +61,15 @@ PaperSheet.propTypes = {
 
 const mapState = (state) => {
   return {
-    data: state.getIn(['main','data']).toJS()
+    data: state.getIn(['main','data'])
   } 
 }
 
 const mapDispatch = (dispatch) => {
   return {
-    popup(){
-      dispatch(actionCreators.openModal())
+    popup(url){
+      let url1 = JSON.stringify(url)
+      dispatch(actionCreators.openModal(url1))
     },
   }
 }

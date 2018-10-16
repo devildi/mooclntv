@@ -1,21 +1,37 @@
 import React from 'react'
 import './App.css'
-import { Provider } from 'react-redux'
-import store from './store'
 import Paper from './components/paper'
 import Bar from './components/bar'
 import Gridlist from './components/gridlist'
 import Modal from './components/modal'
 
-const App = () => (
-	<Provider store={store}>
-    <div className="App">
-      <Bar />
-      <Gridlist />
-      <Paper />
-      <Modal />
-    </div>
-  </Provider>
-)
+import { connect } from 'react-redux'
+import * as actionCreators from './store/actionCreator'
 
-export default App
+class App extends React.Component{
+
+	componentDidMount() {
+    this.props.fatchData()
+  }
+
+	render(){
+		return(
+	    <div className="App">
+	      <Bar />
+	      <Gridlist />
+	      <Paper />
+	      <Modal />
+	    </div>
+		)
+	}
+}
+
+const mapDispatch = (dispatch) => {
+  return {
+    fatchData(){
+      dispatch(actionCreators.fatchData())
+    },
+  }
+}
+
+export default connect(null, mapDispatch)(App)

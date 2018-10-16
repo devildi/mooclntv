@@ -32,7 +32,7 @@ const SimpleModal = (props) =>
             poster="//vjs.zencdn.net/v/oceans.png"
             data-setup='{}'
           >
-            <source src="//vjs.zencdn.net/v/oceans.mp4" type="video/mp4"></source>
+            <source src={props.url} type="video/mp4"></source>
           </video>
         </div>
       </Modal>
@@ -46,7 +46,8 @@ const SimpleModalWrapped = withStyles(styles)(SimpleModal)
 
 const mapState = (state) => {
   return {
-    open: state.getIn(['main','open'])
+    open: state.getIn(['main','open']),
+    url: state.getIn(['main','url'])
   }
 }
 
